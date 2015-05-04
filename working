@@ -20,8 +20,8 @@ tex = ['train_FNC.csv', 'train_labels.csv', 'train_SBM.csv']
 os.chdir("I:\setup\Desktop\Thesis\Data\Schizophrenia\Train")
 
 #import training datasets
-TF = SI.Schiz(tex[0])
-train_FNC = TF.ds[:,:]
+TF = SI.Schiz(tex)
+train_FNC = TF.dsSI.Schiz(tex[0])[:,:]
 
 TF = SI.Schiz(tex[1])
 train_labels = TF.ds[:,:]
@@ -30,10 +30,11 @@ TF = SI.Schiz(tex[2])
 train_SBM = TF.ds[:,:]
 
 #convert labels to -1, 1
-train_labels[:,1] = 2*train_labels[:,1] - 1
+TF.labels = 2*TF.labels[:,1] - 1
+
 
 #normalize data
-ts = SI.preProcess()
-ts.Normal(train_FNC)
+TF.Normal()
 
 #c = np.linalg.lstsq(tstd[1:].T, train_SBM[:,1:].T).T
+
